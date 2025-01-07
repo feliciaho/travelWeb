@@ -55,6 +55,7 @@
                     class="list-group-item"
                     @click="dataName = item.Name"
                     :class="{ active: dataName === item.Name }"
+                    :value="item"
                     >
                     {{ item.Name }}
                     </label>
@@ -67,11 +68,10 @@
             <!-- 右側資訊區 -->
             <div class="col-md-8 h-100 d-flex flex-column">
                 <div class="form-floating">
-                    <select id="cacheArea" class="form-select w-50 mb-2" aria-label="select example">
-                    <option selected :value="瀏覽紀錄" disabled>{{dataName}}</option>
-                    <option value="" v-for="(item, key) in browseLog" :key="key">
-                        {{item}}
-                    </option>
+                    <select id="cacheArea" class="form-select w-50 mb-2" aria-label="select example" v-model="dataName">
+                        <option  v-for="(item, key) in browseLog" :key="key" :value="item">
+                            {{item}}
+                        </option>
                     </select>
                     <label for="cacheArea">瀏覽紀錄</label>
                 </div>

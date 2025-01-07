@@ -1,7 +1,7 @@
 const App = {
   data() {
     return {
-      dataName:"",
+      dataName:"中都愛河濕地公園",
       datastore: [],
       cacheSearch: "",
       browseLog: [],
