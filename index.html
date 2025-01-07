@@ -39,16 +39,19 @@
                 </div>
                 <!-- list 開始 -->
                 <div class="listgroup">
-                    <div class="list-group option" v-for="(item,key) in datastore" :key="key">
-                        <label class="list-group-item" @click="dataName = datastore[key].Name" :class="{'active': dataName === datastore[key].Name}">{{ datastore[key].Name }}</label>
+                    <div class="list-group option" v-for="(item,key) in searchFunc" :key="key">
+                        <label class="list-group-item" @click="dataName = item.Name" :class="{'active': dataName === item.Name}">{{ item.Name }}</label>
                     </div>
                 </div>
                 </div>
                 <!-- 遊覽紀錄 -->
                 <div class="col-md-8 h-100 d-flex flex-column">
                 <div class="form-floating">
-                    <select  id="cacheArea" class="form-select w-50 mb-2" aria-label="select example">
-                    <option selected value="" disabled>瀏覽紀錄</option>
+                    <select id="cacheArea" class="form-select w-50 mb-2" aria-label="select example">
+                    <option selected :value="瀏覽紀錄" disabled>{{dataName}}</option>
+                    <option value="" v-for="(item, key) in browseLog" :key="key">
+                        {{item}}
+                    </option>
                     </select>
                     <label for="cacheArea">瀏覽紀錄</label>
                 </div>

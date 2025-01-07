@@ -3,7 +3,6 @@ const App = {
     return {
       dataName:"中都愛河濕地公園",
       datastore: [],
-      cacheArea: "",
       cacheSearch: "",
       browseLog: [],
     };
@@ -25,12 +24,16 @@ const App = {
       }
     },
   },
-  watch: {},
+  watch: {
+    dataName(){
+      this.browseLog.push(this.dataName)
+    }
+  },
   // search function
   computed: {
     searchFunc(){
-      return this.datastore.filter(datastore=>{
-        return datastore[i].Name.match(this.cacheSearch)
+      return this.datastore.filter(item=>{
+        return item.Name.match(this.cacheSearch)
       })
     }
   },
