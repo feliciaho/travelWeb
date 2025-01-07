@@ -1,7 +1,7 @@
 const App = {
   data() {
     return {
-      dataName:"中都愛河濕地公園",
+      dataName:"",
       datastore: [],
       cacheArea: "",
       cacheSearch: "",
@@ -29,8 +29,8 @@ const App = {
   // search function
   computed: {
     searchFunc(){
-      return this.datastore.filter(datastore=>{
-        return datastore[i].Name.match(this.cacheSearch)
+      return this.datastore.filter(item=>{
+        return item.Name.match(this.cacheSearch)
       })
     }
   },

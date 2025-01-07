@@ -32,38 +32,74 @@
         <div id="app" class="mt-2">
             <!-- 搜尋 -->
             <div class="row h-100">
-                <div class="col-md-3 h-100 d-flex flex-column">
+            <!-- 左側搜尋區 -->
+            <div class="col-md-3 h-100 d-flex flex-column">
                 <div class="form-floating mb-2">
-                    <input type="text" class="form-control" id="search" placeholder="search" v-model="cacheSearch">
-                    <label for="search">search</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    id="search"
+                    placeholder="search"
+                    v-model="cacheSearch"
+                />
+                <label for="search">search</label>
                 </div>
-                <!-- list 開始 -->
+                <!-- 清單開始 -->
                 <div class="listgroup">
-                    <div class="list-group option" v-for="(item,key) in datastore" :key="key">
-                        <label class="list-group-item" @click="dataName = datastore[key].Name" :class="{'active': dataName === datastore[key].Name}">{{ datastore[key].Name }}</label>
-                    </div>
+                <div
+                    class="list-group option"
+                    v-for="(item, key) in searchFunc"
+                    :key="key"
+                >
+                    <label
+                    class="list-group-item"
+                    @click="dataName = item.Name"
+                    :class="{ active: dataName === item.Name }"
+                    >
+                    {{ item.Name }}
+                    </label>
                 </div>
                 </div>
-                <!-- 遊覽紀錄 -->
-                <div class="col-md-8 h-100 d-flex flex-column">
+            </div>
+        
+            <!-- 中間空白區或額外內容 -->
+        
+            <!-- 右側資訊區 -->
+            <div class="col-md-8 h-100 d-flex flex-column">
                 <div class="form-floating">
-                    <select  id="cacheArea" class="form-select w-50 mb-2" aria-label="select example">
-                    <option selected value="" disabled>瀏覽紀錄</option>
-                    </select>
-                    <label for="cacheArea">瀏覽紀錄</label>
+                <select
+                    id="cacheArea"
+                    class="form-select w-50 mb-2"
+                    aria-label="select example"
+                >
+                    <option selected :value="cacheSearch" disabled>瀏覽紀錄</option>
+                </select>
+                <label for="cacheArea">瀏覽紀錄</label>
                 </div>
-                <!-- 右資訊窗 -->
+                <!-- 資訊卡片 -->
                 <div v-for="(item, key) in datastore" class="listgroup">
-                    <div class="card overflow-auto" v-if=" dataName === datastore[key].Name ">
-                        <img :src="datastore[key].Picture1" class="card-img-top" :alt="datastore[key].Name">
-                        <iframe width="100%" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
-                            :src=`https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=${datastore[key].Py},${datastore[key].Px}(${datastore[key].Name})&z=16&output=embed`></iframe>
-                        <div class="card-body">
-                        <h5 class="card-title">{{ datastore[key].Name }}</h5>
-                        <p>{{ datastore[key].Description }}</p>
+                <div class="card overflow-auto" v-if="dataName === datastore[key].Name">
+                    <img
+                    :src="datastore[key].Picture1"
+                    class="card-img-top"
+                    :alt="datastore[key].Name"
+                    />
+                    <iframe
+                    width="100%"
+                    height="300"
+                    frameborder="0"
+                    scrolling="no"
+                    marginheight="0"
+                    marginwidth="0"
+                    :src="`https://maps.google.com.tw/maps?f=q&hl=zh-TW&geocode=&q=${datastore[key].Py},${datastore[key].Px}(${datastore[key].Name})&z=16&output=embed`"
+                    ></iframe>
+                    <div class="card-body">
+                    <h5 class="card-title">{{ datastore[key].Name }}</h5>
+                    <p>{{ datastore[key].Description }}</p>
                     </div>
                 </div>
                 </div>
+            </div>
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
