@@ -68,8 +68,9 @@
             <!-- 右側資訊區 -->
             <div class="col-md-8 h-100 d-flex flex-column">
                 <div class="form-floating">
+                    <!-- v-model 表示select 元素的選定值會綁訂到vue dataName 屬性中 -->
                     <select id="cacheArea" class="form-select w-50 mb-2" aria-label="select example" v-model="dataName">
-                        <option  v-for="(item, key) in browseLog" :key="key" :value="item">
+                        <option  v-for="(item, key) in browseLog" :key="key">
                             {{item}}
                         </option>
                     </select>

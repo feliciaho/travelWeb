@@ -25,11 +25,17 @@ const App = {
     },
   },
   watch: {
+    // 監聽dataName的變化
     dataName(){
-      this.browseLog.push(this.dataName)
+      // unshift將元素加入陣列最前面
+      this.browseLog.unshift(this.dataName);
+      // 如果陣列大於10個，則刪除最後一個
+      if(this.browseLog.length > 10){
+        this.browseLog.splice(10);
+      }
     }
   },
-  // search function
+  // search function 監聽cacheSearch的變化
   computed: {
     searchFunc(){
       return this.datastore.filter(item=>{
